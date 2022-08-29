@@ -186,9 +186,9 @@ def three_same_figures(year):
         return ''
 
 
-def bad_years(year_1, year_2):
-    bad_years = ' '
-    for year in range(year_1, year_2 + 1):
+def bad_years(year_1, year_3):
+    bad_years = ''
+    for year in range(year_1, year_3 + 1):
         bad_years += three_same_figures(year)
     print(bad_years)
 
