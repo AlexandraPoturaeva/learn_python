@@ -104,32 +104,104 @@ from random import randint
 
 # Задача 3. Собачьи бега
 
-dogs_count = randint(5, 20)
-print('В бегах участвует собак:', dogs_count)
-dog_scores_list = []
+# dogs_count = randint(5, 20)
+# print('В бегах участвует собак:', dogs_count)
+# dog_scores_list = []
+#
+# print('Очки:')
+#
+# for i in range(1, dogs_count + 1):
+#     dog_scores = randint(1, 100)
+#     print(str(i) + ' - ', dog_scores)
+#     dog_scores_list.append(dog_scores)
+#
+# maximum = max(dog_scores_list)
+# minimum = min(dog_scores_list)
+#
+# print('Максимальное количество очков:', maximum)
+# print('Минимальное количество очков:', minimum)
+# print('')
+#
+# difference = maximum - minimum
+#
+# for i in range(dogs_count):
+#     if dog_scores_list[i] == maximum:
+#         dog_scores_list[i] -= difference
+#     elif dog_scores_list[i] == minimum:
+#         dog_scores_list[i] += difference
+#
+# print('Исправленное распределение очков:')
+# for i in range(1, dogs_count + 1):
+#     print(str(i) + ' - ', dog_scores_list[i - 1])
 
-print('Очки:')
+# 15.3 Списки: работа со строками
 
-for i in range(1, dogs_count + 1):
-    dog_scores = randint(1, 100)
-    print(str(i) + ' - ', dog_scores)
-    dog_scores_list.append(dog_scores)
+# Задача 1. Текстовый редактор: возвращение
 
-maximum = max(dog_scores_list)
-minimum = min(dog_scores_list)
+# text = input('Введите строку: ')
+#
+# text_list = list(text)
+# replacements_indexes = []
+# sym_count = -1
+# replacements_count = 0
+#
+# for sym in text_list:
+#     sym_count += 1
+#     if sym == ':':
+#         replacements_indexes.append(sym_count)
+#         replacements_count += 1
+# # print(replacements_indexes)
+#
+# print('Исправленная строка: ', end='')
+#
+# for i in replacements_indexes:
+#     text_list[i] = ';'
+#
+# for sym in text_list:
+#     print(sym, end='')
+#
+# print('\nКоличество замен:', replacements_count)
 
-print('Максимальное количество очков:', maximum)
-print('Минимальное количество очков:', minimum)
-print('')
+# Задача 2. Соседи
 
-difference = maximum - minimum
+# text = input('Введите строку: ')
+# sym_number = int(input('Номер символа: '))
+#
+# text_list = list(text)
+#
+# left_sym = text_list[sym_number - 2]
+# right_sym = text_list[sym_number]
+# find_sym = text_list[sym_number - 1]
+#
+# print('Символ слева:', left_sym)
+# print('Символ справа:', right_sym)
+#
+# if (left_sym == find_sym and right_sym != find_sym) or (right_sym == find_sym and left_sym != find_sym):
+#     print('Есть ровно один такой же символ')
+# elif left_sym == find_sym and right_sym == find_sym:
+#     print('Есть два таких же символа')
+# else:
+#     print('Таких же символов нет')
 
-for i in range(dogs_count):
-    if dog_scores_list[i] == maximum:
-        dog_scores_list[i] -= difference
-    elif dog_scores_list[i] == minimum:
-        dog_scores_list[i] += difference
+# Задача 3. Улучшенная лингвистика
 
-print('Исправленное распределение очков:')
-for i in range(1, dogs_count + 1):
-    print(str(i) + ' - ', dog_scores_list[i - 1])
+words_to_find_list = []
+words_count = [0, 0, 0]
+
+for i in range(1, 4):
+    word = input('Введите ' + str(i) + '-е слово: ')
+    words_to_find_list.append(word)
+
+print('Введите текст по словам:')
+text = input('Слово из текста: ')
+while text != 'end':
+    for i in range(3):
+        if text == words_to_find_list[i]:
+            words_count[i] += 1
+    text = input('Слово из текста: ')
+
+print('\nПодсчёт слов в тексте:')
+for i in range(3):
+    print(words_to_find_list[i] + ': ' + str(words_count[i]))
+
+
