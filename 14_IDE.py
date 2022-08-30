@@ -170,15 +170,16 @@ from random import randint
 
 # Задача 7. Годы
 
-year_1 = 1112#randint(1000, 2022)
-year_2 = 1697#year_1 + randint(0, 1500)
+year_1 = randint(1000, 2022)
+year_2 = year_1 + randint(0, 1500)
 print('Первый год:', year_1, '\nВторой год:', year_2)
+print('Годы от', year_1, 'до', year_2, 'с тремя одинаковыми цифрами:')
 
 
 def three_same_figures(year):
     fig_1 = year // 1000
     fig_2 = year // 100 % 10
-    fig_3 = year // 10 % 100
+    fig_3 = year // 10 % 10
     fig_4 = year % 10
     if (fig_1 == fig_2 == fig_3 and fig_3 != fig_4) or (fig_1 == fig_3 == fig_4 and fig_4 != fig_2) or (fig_1 == fig_2 == fig_4 and fig_4 != fig_3) or (fig_2 == fig_3 == fig_4 and fig_4 != fig_1):
         return str(year) + '\n'
@@ -187,7 +188,7 @@ def three_same_figures(year):
 
 
 def bad_years(year_1, year_2):
-    bad_years = ' '
+    bad_years = ''
     for year in range(year_1, year_2 + 1):
         bad_years += three_same_figures(year)
     print(bad_years)
