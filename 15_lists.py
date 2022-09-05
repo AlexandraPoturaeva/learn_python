@@ -622,6 +622,30 @@ def make_random_words_list(word_list, max_cnt):
 
 # Задача 10. Сортировка
 
+# Метод 1
+
+# numbers_count = randint(3, 10)
+# numbers_list = []
+#
+# for i in range(numbers_count):
+#     number = randint(-10, 10)
+#     numbers_list.append(number)
+#
+# print('Изначальный список:', numbers_list)
+#
+# for index in range(len(numbers_list)):
+#     clipboard = numbers_list[0]
+#     for i in range(1, len(numbers_list)):
+#         if numbers_list[i] <= clipboard:
+#             numbers_list[i - 1] = numbers_list[i]
+#             numbers_list[i] = clipboard
+#         else:
+#             clipboard = numbers_list[i]
+#
+# print(numbers_list)
+
+# Метод 2
+
 numbers_count = randint(3, 10)
 numbers_list = []
 
@@ -631,19 +655,9 @@ for i in range(numbers_count):
 
 print('Изначальный список:', numbers_list)
 
-clipboard = numbers_list[0]
-
-for i in range(len(numbers_list)):
-    if numbers_list[i] <= clipboard:
-        numbers_list[i - 1] = numbers_list[i]
-        numbers_list[i] = clipboard
-        clipboard = numbers_list[i]
+numbers_list.sort()
 
 print(numbers_list)
-
-
-
-
 
 
 
