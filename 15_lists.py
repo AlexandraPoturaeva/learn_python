@@ -624,14 +624,16 @@ def make_random_words_list(word_list, max_cnt):
 
 # Метод 1
 
-# numbers_count = randint(3, 10)
-# numbers_list = []
-#
-# for i in range(numbers_count):
-#     number = randint(-10, 10)
-#     numbers_list.append(number)
-#
-# print('Изначальный список:', numbers_list)
+numbers_count = randint(3, 10)
+numbers_list = []
+
+for i in range(numbers_count):
+    number = randint(-10, 10)
+    numbers_list.append(number)
+
+print('Изначальный список:', numbers_list)
+
+
 #
 # for index in range(len(numbers_list)):
 #     clipboard = numbers_list[0]
@@ -642,23 +644,23 @@ def make_random_words_list(word_list, max_cnt):
 #         else:
 #             clipboard = numbers_list[i]
 #
-# print(numbers_list)
+# print('Отсортированный список:', numbers_list)
 
 # Метод 2
 
-numbers_count = randint(3, 10)
-numbers_list = []
+# numbers_list.sort()
+#
+# print('Отсортированный список:', numbers_list)
 
-for i in range(numbers_count):
-    number = randint(-10, 10)
-    numbers_list.append(number)
+# Метод 3 (из разбора ДЗ)
 
-print('Изначальный список:', numbers_list)
-
-numbers_list.sort()
-
-print(numbers_list)
-
+def selection_sort(my_list):
+    for i_mn in range(len(my_list)):
+        for curr in range(i_mn, len(my_list)):
+            if my_list[curr] < my_list[i_mn]:
+                my_list[curr], my_list[i_mn] = my_list[i_mn], my_list[curr]
 
 
+selection_sort(numbers_list)
 
+print('Отсортированный список:', numbers_list)
