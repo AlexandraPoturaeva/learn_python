@@ -136,6 +136,7 @@ def make_random_words_list(word_list, max_cnt):
 import string
 import random
 
+
 # def make_random_word():
 #     word = ''
 #     punctuation_marks = ['!', '?']
@@ -588,29 +589,58 @@ import random
 
 # Задача 10. Симметричная последовательность
 
-number_cnt = randint(3, 10)
-print('Количество чисел:', number_cnt)
+# Метод 1 (мой)
 
-number_list = []
-print('Последовательность:')
+# number_cnt = randint(3, 10)
+# print('Количество чисел:', number_cnt)
+#
+# number_list = []
+# print('Последовательность:')
+#
+# for _ in range(number_cnt):
+#     number = randint(0, 9)
+#     number_list.append(number)
+#
+# print(number_list)
+#
+# i = 0
+#
+# if number_list == number_list[::-1]:
+#     print('Последовательность уже является симметричной. Новых чисел приписывать не нужно.')
+# else:
+#     while number_list != number_list[::-1]:
+#         number_list.insert(number_cnt, number_list[i])
+#         i += 1
+#
+# print('Нужно приписать чисел:', i)
+# print('Сами числа:', number_list[number_cnt::])
 
-for _ in range(number_cnt):
-    number = randint(0, 9)
-    number_list.append(number)
+# Метод 2 (из разбора ДЗ)
 
-print(number_list)
-
-i = 0
-
-if number_list == number_list[::-1]:
-    print('Последовательность уже является симметричной. Новых чисел приписывать не нужно.')
-else:
-    while number_list != number_list[::-1]:
-        number_list.insert(number_cnt, number_list[i])
-        i += 1
-
-print('Нужно приписать чисел:', i)
-print('Сами числа:', number_list[number_cnt::])
+def is_palindrome(num_list):
+    reverse_list = []
+    for i_num in range(len(num_list) - 1, -1, -1):
+        reverse_list.append(num_list[i_num])
+    if num_list == reverse_list:
+        return True
+    else:
+        return False
 
 
+nums = [1, 2, 3, 4, 5]
+new_nums = []
+answer = []
 
+for i_nums in range(0, len(nums)):
+    for j_elem in range(i_nums, len(nums)):
+        new_nums.append(nums[j_elem])
+    if is_palindrome(new_nums):
+        for i_answer in range(0, i_nums):
+            answer.append(nums[i_answer])
+        answer.reverse()
+        break
+    new_nums = []
+
+print('Исходный список:', nums)
+print('Нужно чисел для палиндрома:', len(answer))
+print('Список этих чисел:', answer)
