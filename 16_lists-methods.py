@@ -587,7 +587,6 @@ import random
 #     print(str(i_info[0]) + ': ' + str(i_info[1]))
 
 # Задача 10. Симметричная последовательность
-import functools
 
 number_cnt = randint(3, 10)
 print('Количество чисел:', number_cnt)
@@ -596,7 +595,7 @@ number_list = []
 print('Последовательность:')
 
 for _ in range(number_cnt):
-    number = randint(0, 10)
+    number = randint(0, 9)
     number_list.append(number)
 
 print(number_list)
