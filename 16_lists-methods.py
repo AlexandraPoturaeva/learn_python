@@ -46,57 +46,57 @@ from my_modules import helper
 
 # Задача 3. Кино
 
-def add_film(film, list):
-    if film in list:
-        print('Ошибка. Такой фильм уже есть в Вашем списке.')
-    else:
-        list.append(film)
+# def add_film(film, list):
+#     if film in list:
+#         print('Ошибка. Такой фильм уже есть в Вашем списке.')
+#     else:
+#         list.append(film)
+#
+#
+# def insert_film(film, list):
+#     if film in list:
+#         print('Ошибка. Такой фильм уже есть в Вашем списке.')
+#     else:
+#         print('На какое место?', end=' ')
+#         place = randint(1, len(user_top_films) + 1)
+#         print(place)
+#         list.insert(place - 1, film)
+#
+#
+# def delete_film(film, list):
+#     if film in list:
+#         list.remove(film)
+#     else:
+#         print('Ошибка. Такого фильма нет в Вашем списке.')
+#
+#
+# def make_films_rating(command, film, list):
+#     match command:
+#         case 'добавить':
+#             add_film(film, list)
+#         case 'вставить':
+#             insert_film(film, list)
+#         case 'удалить':
+#             delete_film(film, list)
+#
+# with open('C:/code/Skillbox/data/text_lists/films', 'rb') as f:
+#     film_list = pickle.load(f)
+#
+# user_top_films = []
+# commands = ['добавить', 'вставить', 'удалить', 'выйти']
+# command = 'start'
+#
+#
+# while command != 'выйти':
+#     print('Ваш текущий топ фильмов:', user_top_films)
+#     film = film_list[randint(0, len(film_list) - 1)]
+#     print('Название фильма:', film)
+#     print('Команды: добавить, вставить, удалить, выйти')
+#     command = commands[randint(0, len(commands) - 1)]
+#     print(command)
+#     make_films_rating(command, film, user_top_films)
 
-
-def insert_film(film, list):
-    if film in list:
-        print('Ошибка. Такой фильм уже есть в Вашем списке.')
-    else:
-        print('На какое место?', end=' ')
-        place = randint(1, len(user_top_films) + 1)
-        print(place)
-        list.insert(place - 1, film)
-
-
-def delete_film(film, list):
-    if film in list:
-        list.remove(film)
-    else:
-        print('Ошибка. Такого фильма нет в Вашем списке.')
-
-
-def make_films_rating(command, film, list):
-    match command:
-        case 'добавить':
-            add_film(film, list)
-        case 'вставить':
-            insert_film(film, list)
-        case 'удалить':
-            delete_film(film, list)
-
-with open('C:/code/Skillbox/data/text_lists/films', 'rb') as f:
-    film_list = pickle.load(f)
-
-user_top_films = []
-commands = ['добавить', 'вставить', 'удалить', 'выйти']
-command = 'start'
-
-
-while command != 'выйти':
-    print('Ваш текущий топ фильмов:', user_top_films)
-    film = film_list[randint(0, len(film_list) - 1)]
-    print('Название фильма:', film)
-    print('Команды: добавить, вставить, удалить, выйти')
-    command = commands[randint(0, len(commands) - 1)]
-    print(command)
-    make_films_rating(command, film, user_top_films)
-
-print(user_top_films)
+# print(user_top_films)
 # 16.3 Работа с несколькими списками. Методы extend и count
 
 # Задача 1. Задачи компаний
@@ -301,38 +301,51 @@ shop = [
 # print('Количество деталей:', detail_count, '\nОбщая стоимость:', total_details_cost)
 
 # Задача 4. Вечеринка
-# with open('./data/text_lists/names', 'rb') as f:
-#     names = pickle.load(f)
-#
-# guests = helper.make_random_text_list('names', 5)
-#
-# actions = ['пришёл', 'ушёл', 'пора спать']
-# action = 'начнём'
-#
-#
-# while action != 'пора спать':
-#     action = actions[randint(0, 2)]
-#     print('Сейчас на вечеринке', len(guests), 'человек:', guests)
-#     print('Гость пришёл или ушёл?', action)
-#     if action == 'пришёл':
-#         new_guest_name = names[randint(0, len(names) - 1)]
-#         print('Имя гостя:', new_guest_name)
-#         if len(guests) < 6:
-#             print('Привет, ' + new_guest_name + '!')
-#             guests.append(new_guest_name)
-#         else:
-#             print('Прости, ' + new_guest_name + ', но мест нет')
-#     elif action == 'ушёл':
-#         if len(guests) == 0:
-#             print('Все гости ушли.')
-#         else:
-#             old_guest_name = guests[randint(0, len(guests) - 1)]
-#             print('Имя гостя:', old_guest_name)
-#             print('Пока, ' + old_guest_name + '!')
-#             guests.remove(old_guest_name)
-#
-#
-# print('Вечеринка закончилась. Все легли спать.')
+
+with open('./data/text_lists/names', 'rb') as f:
+    names = pickle.load(f)
+
+guests = helper.make_random_text_list('names', 5)
+
+
+def welcome_guest(guest_name, guest_list, max_guests_cnt):
+    if len(guest_list) < max_guests_cnt:
+        print('Привет, ' + guest_name + '!')
+        guest_list.append(guest_name)
+    else:
+        print('Прости, ' + guest_name + ', но мест нет')
+
+
+def bye_guest(guest_list):
+    if len(guest_list) == 0:
+        print('Все гости ушли.')
+    else:
+        guest_name = guest_list[randint(0, len(guests) - 1)]
+        print('Имя гостя:', guest_name)
+        print('Пока, ' + guest_name + '!')
+        guests.remove(guest_name)
+
+
+def welcome_guests(action, names_list, guest_list, max_guests_cnt):
+    match action:
+        case 'пришёл':
+            guest_name = names_list[randint(0, len(names_list) - 1)]
+            print('Имя гостя:', guest_name)
+            welcome_guest(guest_name, guest_list, max_guests_cnt)
+        case 'ушёл':
+            bye_guest(guest_list)
+
+
+actions = ['пришёл', 'ушёл', 'пора спать']
+action = 'начнём'
+
+while action != 'пора спать':
+    action = actions[randint(0, 2)]
+    print('Сейчас на вечеринке', len(guests), 'человек:', guests)
+    print('Гость пришёл или ушёл?', action)
+    welcome_guests(action, names, guests, 6)
+
+print('Вечеринка закончилась. Все легли спать.')
 
 # Задача 5. Песни
 
