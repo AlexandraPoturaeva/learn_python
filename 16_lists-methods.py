@@ -4,7 +4,6 @@ import random
 from random import randint
 from my_modules import helper
 
-
 # 16.2 Работа со списками: методы insert, remove, index
 
 # Задача 1. Зоопарк
@@ -47,40 +46,57 @@ from my_modules import helper
 
 # Задача 3. Кино
 
-# with open('C:/code/Skillbox/data/text_lists/films', 'rb') as f:
-#     film_list = pickle.load(f)
-#
-# user_top_films = []
-# commands = ['добавить', 'вставить', 'удалить', 'выйти']
-#
-# while True:
-#     print('Ваш текущий топ фильмов:', user_top_films)
-#     film = film_list[randint(0, len(film_list) - 1)]
-#     print('Название фильма:', film)
-#     print('Команды: добавить, вставить, удалить, выйти')
-#     command = commands[randint(0, len(commands) - 1)]
-#     print(command)
-#     if command == 'добавить':
-#         if film in user_top_films:
-#             print('Ошибка. Такой фильм уже есть в Вашем списке.')
-#         else:
-#             user_top_films.append(film)
-#     elif command == 'вставить':
-#         if film in user_top_films:
-#             print('Ошибка. Такой фильм уже есть в Вашем списке.')
-#         else:
-#             print('На какое место?', end = ' ')
-#             place = randint(1, len(user_top_films) + 1)
-#             print(place)
-#             user_top_films.insert(place - 1, film)
-#     elif command == 'удалить':
-#         if film in user_top_films:
-#             user_top_films.remove(film)
-#         else:
-#             print('Ошибка. Такого фильма нет в Вашем списке.')
-#     elif command == 'выйти':
-#         break
+def add_film(film, list):
+    if film in list:
+        print('Ошибка. Такой фильм уже есть в Вашем списке.')
+    else:
+        list.append(film)
 
+
+def insert_film(film, list):
+    if film in list:
+        print('Ошибка. Такой фильм уже есть в Вашем списке.')
+    else:
+        print('На какое место?', end=' ')
+        place = randint(1, len(user_top_films) + 1)
+        print(place)
+        list.insert(place - 1, film)
+
+
+def delete_film(film, list):
+    if film in list:
+        list.remove(film)
+    else:
+        print('Ошибка. Такого фильма нет в Вашем списке.')
+
+
+def make_films_rating(command, film, list):
+    match command:
+        case 'добавить':
+            add_film(film, list)
+        case 'вставить':
+            insert_film(film, list)
+        case 'удалить':
+            delete_film(film, list)
+
+with open('C:/code/Skillbox/data/text_lists/films', 'rb') as f:
+    film_list = pickle.load(f)
+
+user_top_films = []
+commands = ['добавить', 'вставить', 'удалить', 'выйти']
+command = 'start'
+
+
+while command != 'выйти':
+    print('Ваш текущий топ фильмов:', user_top_films)
+    film = film_list[randint(0, len(film_list) - 1)]
+    print('Название фильма:', film)
+    print('Команды: добавить, вставить, удалить, выйти')
+    command = commands[randint(0, len(commands) - 1)]
+    print(command)
+    make_films_rating(command, film, user_top_films)
+
+print(user_top_films)
 # 16.3 Работа с несколькими списками. Методы extend и count
 
 # Задача 1. Задачи компаний
