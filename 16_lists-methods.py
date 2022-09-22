@@ -302,50 +302,50 @@ shop = [
 
 # Задача 4. Вечеринка
 
-with open('./data/text_lists/names', 'rb') as f:
-    names = pickle.load(f)
-
-guests = helper.make_random_text_list('names', 5)
-
-
-def welcome_guest(guest_name, guest_list, max_guests_cnt):
-    if len(guest_list) < max_guests_cnt:
-        print('Привет, ' + guest_name + '!')
-        guest_list.append(guest_name)
-    else:
-        print('Прости, ' + guest_name + ', но мест нет')
-
-
-def bye_guest(guest_list):
-    if len(guest_list) == 0:
-        print('Все гости ушли.')
-    else:
-        guest_name = guest_list[randint(0, len(guests) - 1)]
-        print('Имя гостя:', guest_name)
-        print('Пока, ' + guest_name + '!')
-        guests.remove(guest_name)
-
-
-def welcome_guests(action, names_list, guest_list, max_guests_cnt):
-    match action:
-        case 'пришёл':
-            guest_name = names_list[randint(0, len(names_list) - 1)]
-            print('Имя гостя:', guest_name)
-            welcome_guest(guest_name, guest_list, max_guests_cnt)
-        case 'ушёл':
-            bye_guest(guest_list)
-
-
-actions = ['пришёл', 'ушёл', 'пора спать']
-action = 'начнём'
-
-while action != 'пора спать':
-    action = actions[randint(0, 2)]
-    print('Сейчас на вечеринке', len(guests), 'человек:', guests)
-    print('Гость пришёл или ушёл?', action)
-    welcome_guests(action, names, guests, 6)
-
-print('Вечеринка закончилась. Все легли спать.')
+# with open('./data/text_lists/names', 'rb') as f:
+#     names = pickle.load(f)
+#
+# guests = helper.make_random_text_list('names', 5)
+#
+#
+# def welcome_guest(guest_name, guest_list, max_guests_cnt):
+#     if len(guest_list) < max_guests_cnt:
+#         print('Привет, ' + guest_name + '!')
+#         guest_list.append(guest_name)
+#     else:
+#         print('Прости, ' + guest_name + ', но мест нет')
+#
+#
+# def bye_guest(guest_list):
+#     if len(guest_list) == 0:
+#         print('Все гости ушли.')
+#     else:
+#         guest_name = guest_list[randint(0, len(guests) - 1)]
+#         print('Имя гостя:', guest_name)
+#         print('Пока, ' + guest_name + '!')
+#         guests.remove(guest_name)
+#
+#
+# def welcome_guests(action, names_list, guest_list, max_guests_cnt):
+#     match action:
+#         case 'пришёл':
+#             guest_name = names_list[randint(0, len(names_list) - 1)]
+#             print('Имя гостя:', guest_name)
+#             welcome_guest(guest_name, guest_list, max_guests_cnt)
+#         case 'ушёл':
+#             bye_guest(guest_list)
+#
+#
+# actions = ['пришёл', 'ушёл', 'пора спать']
+# action = 'начнём'
+#
+# while action != 'пора спать':
+#     action = actions[randint(0, 2)]
+#     print('Сейчас на вечеринке', len(guests), 'человек:', guests)
+#     print('Гость пришёл или ушёл?', action)
+#     welcome_guests(action, names, guests, 6)
+#
+# print('Вечеринка закончилась. Все легли спать.')
 
 # Задача 5. Песни
 
@@ -384,28 +384,30 @@ print('Вечеринка закончилась. Все легли спать.'
 
 # Задача 6. Уникальные элементы
 
-# list_1 = []
-# list_2 = []
-#
-# num_cnt_list_1 = 3
-# num_cnt_list_2 = 7
-#
-#
-# def make_num_list(count, list):
-#     for i in range(1, count + 1):
-#         num = randint(1, 10)
-#         print(str(i) + ') ' + str(num))
-#         list.append(num)
-#
-#
-# print('Числа для первого списка:')
-# make_num_list(num_cnt_list_1, list_1)
-#
-# print('\nЧисла для второго списка:')
-# make_num_list(num_cnt_list_2, list_2)
-#
-# list_1.extend(list_2)
-#
+list_1 = []
+list_2 = []
+
+num_cnt_list_1 = 3
+num_cnt_list_2 = 7
+
+
+def make_num_list(count, list):
+    for i in range(1, count + 1):
+        num = randint(1, 10)
+        print(str(i) + ') ' + str(num))
+        list.append(num)
+
+
+print('Числа для первого списка:')
+make_num_list(num_cnt_list_1, list_1)
+
+print('\nЧисла для второго списка:')
+make_num_list(num_cnt_list_2, list_2)
+
+list_1.extend(list_2)
+
+# Метод 1
+
 # num_count_list = []
 #
 # for num in list_1:
@@ -424,6 +426,14 @@ print('Вечеринка закончилась. Все легли спать.'
 #         list_1.remove(num_to_remove)
 #
 # print('Новый первый список с уникальными элементами:', list_1)
+
+# Метод 2
+
+list_1_set = set(list_1)
+list_1 = list(list_1_set)
+
+print('Новый первый список с уникальными элементами:', list_1)
+
 
 # Задача 7. Ролики
 
