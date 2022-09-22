@@ -384,27 +384,27 @@ shop = [
 
 # Задача 6. Уникальные элементы
 
-list_1 = []
-list_2 = []
-
-num_cnt_list_1 = 3
-num_cnt_list_2 = 7
-
-
-def make_num_list(count, list):
-    for i in range(1, count + 1):
-        num = randint(1, 10)
-        print(str(i) + ') ' + str(num))
-        list.append(num)
-
-
-print('Числа для первого списка:')
-make_num_list(num_cnt_list_1, list_1)
-
-print('\nЧисла для второго списка:')
-make_num_list(num_cnt_list_2, list_2)
-
-list_1.extend(list_2)
+# list_1 = []
+# list_2 = []
+#
+# num_cnt_list_1 = 3
+# num_cnt_list_2 = 7
+#
+#
+# def make_num_list(count, list):
+#     for i in range(1, count + 1):
+#         num = randint(1, 10)
+#         print(str(i) + ') ' + str(num))
+#         list.append(num)
+#
+#
+# print('Числа для первого списка:')
+# make_num_list(num_cnt_list_1, list_1)
+#
+# print('\nЧисла для второго списка:')
+# make_num_list(num_cnt_list_2, list_2)
+#
+# list_1.extend(list_2)
 
 # Метод 1
 
@@ -429,10 +429,10 @@ list_1.extend(list_2)
 
 # Метод 2
 
-list_1_set = set(list_1)
-list_1 = list(list_1_set)
-
-print('Новый первый список с уникальными элементами:', list_1)
+# list_1_set = set(list_1)
+# list_1 = list(list_1_set)
+#
+# print('Новый первый список с уникальными элементами:', list_1)
 
 
 # Задача 7. Ролики
@@ -490,10 +490,8 @@ print('Новый первый список с уникальными элеме
 # start_num_index = 0
 #
 # while len(pers_list) != 1:
-#     print('')
-#     print('Текущий круг людей:', pers_list)
-#     print('start_num_index', start_num_index)
-#     print('Начало счёта с номера', pers_list[start_num_index])
+#     print('\nТекущий круг людей:', pers_list, '\nИндекс числа начала отсчёта:', start_num_index,
+#           '\nНачало счёта с номера', pers_list[start_num_index])
 #     num_to_remove_index = ((start_num_index + (count_num % len(pers_list)) - 1) % len(pers_list))
 #     print('Выбывает человек под номером', pers_list[num_to_remove_index])
 #     pers_list.pop(num_to_remove_index)
@@ -512,10 +510,8 @@ print('Новый первый список с уникальными элеме
 # start_num_index = 0
 #
 # while len(pers_list) != 1:
-#     print('')
-#     print('Текущий круг людей:', pers_list)
-#     print('start_num_index', start_num_index)
-#     print('Начало счёта с номера', pers_list[start_num_index])
+#     print('\nТекущий круг людей:', pers_list, '\nИндекс числа начала отсчёта:', start_num_index,
+#           '\nНачало счёта с номера', pers_list[start_num_index])
 #     num_to_remove_index = (start_num_index + count_num - 1) % len(pers_list)
 #     print('Выбывает человек под номером', pers_list[num_to_remove_index])
 #     pers_list.pop(num_to_remove_index)
