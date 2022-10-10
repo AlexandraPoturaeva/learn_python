@@ -61,11 +61,18 @@ names = ['Александр', 'Агата', 'Аделина', 'Адель', 'А
 # text_where_to_find_str = ' '.join(text_where_to_find)
 #
 # print('Список слов для подсчёта их частоты употребления в тексте:', words_to_find_str, '\nТекст:', text_where_to_find_str)
+
+# # Метод 1
 #
 # words_freq_dict = {i: text_where_to_find.count(i) for i in words_to_find_list}
-#
 # for key, value in words_freq_dict.items():
 #     print(key + ': ' + str(value))
+#
+# # Метод 2
+# words_count = [str(text_where_to_find_str.count(word)) for word in words_to_find_list]
+# words_count_info_list = [': '.join([words_to_find_list[i], words_count[i]]) for i in range(3)]
+# words_count_info_text = '\n'.join(words_count_info_list)
+# print(words_count_info_text)
 
 # Задача 2. Бабушка
 
@@ -76,9 +83,7 @@ names = ['Александр', 'Агата', 'Аделина', 'Адель', 'А
 #
 # print('Текст:', text)
 #
-# text_list = text.split()
-#
-# correct_text = ' '.join(text_list)
+# correct_text = ' '.join(text.split())
 #
 # print(correct_text)
 
@@ -99,8 +104,19 @@ age_list = [str(random.randint(10, 100)) for i in range(persons_count)]
 age_text = ' '.join(age_list)
 print('Возраст людей через пробел:', age_text)
 
-for i_pers in range(persons_count):
-    print(grats_template.format(name = birthday_pers_list[i_pers], age = age_list[i_pers]))
+# Метод 1
+# for i_pers in range(persons_count):
+#     print(grats_template.format(name = birthday_pers_list[i_pers], age = age_list[i_pers]))
+
+# Метод 2
+
+# for index, person in enumerate(birthday_pers_list):
+#     print(grats_template.format(name=person, age=age_list[index]))
+
+# Метод 3
+
+for age, name in zip(age_list, birthday_pers_list):
+    print(grats_template.format(name=name, age=age))
 
 persons_and_age_list = [' '.join([birthday_pers_list[i], age_list[i]]) for i in range(persons_count)]
 persons_and_age_text = ', '.join(persons_and_age_list)
