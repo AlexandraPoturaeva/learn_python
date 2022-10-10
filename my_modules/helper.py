@@ -21,3 +21,12 @@ def make_random_letters_sequence():
         letter = random.choice(string.ascii_lowercase)
         word += letter
     return word
+
+
+def make_random_letters_sequence_up_low():
+    word = ''
+    letters_count = randint(1, 8)
+    for _ in range(letters_count):
+        letter = random.choice(string.ascii_letters)
+        word += letter
+    return word
