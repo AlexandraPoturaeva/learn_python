@@ -1,6 +1,9 @@
 # 18.2 Форматирование строк: format и f-strings
 # Задача 1. Заказ
 import random
+import string
+from random import randint
+from random import shuffle
 
 from my_modules import helper
 
@@ -196,6 +199,217 @@ names = ['Александр', 'Агата', 'Аделина', 'Адель', 'А
 # else:
 #     print(text.upper())
 
+# 18.6 Практическая работа
+
+# Задача 1. Меню ресторана
+
+# dishes_avail_list = helper.make_random_text_list('russian_dishes', random.randint(5, 10))
+# dishes_avail_text = ';'.join(dishes_avail_list).lower()
+# print('Доступное меню:', dishes_avail_text)
+# print('На данный момент в меню есть:', dishes_avail_text.replace(';', ', '))
+
+# Задача 2. Самое длинное слово
+
+# text = ' '.join(helper.make_random_text_list('words', random.randint(5, 10)))
+# print('Текст:', text)
+#
+# words_list = text.split()
+# max_length_word = max(words_list, key=len)
+# print('Самое длинное слово:', max_length_word, '\nДлина этого слова:', len(max_length_word))
+
+# Задача 3. Файлы
+
+# file_extensions = ['.txt', '.jpg', '.docx', '.ttx', '.doxc', '.xtt', '.doc']
+# file_extensions_right = ['.txt', '.docx']
+# special_syms = ['@', '№', '$', '%', '^', '&', '*', '(', ')']
+# file_beginings = special_syms.copy()
+# file_beginings.append('')
+#
+# while True:
+#     file_name = random.choice(file_beginings) + 'new_file' + random.choice(file_extensions)
+#     print('Название файла:', file_name)
+#     if file_name.startswith(tuple(special_syms)):
+#         print('Ошибка: название начинается на один из специальных символов.')
+#     if not file_name.endswith(tuple(file_extensions_right)):
+#         print('Ошибка: неверное расширение файла. Ожидалось .txt или .docx.')
+#     else:
+#         print('Файл назван верно.')
+#         break
+
+# Задача 4. Заглавные буквы
+
+# user_text = ' '.join([helper.make_random_letters_sequence_up_low() for _ in range(random.randint(3, 8))])
+# print('Текст:', user_text)
+#
+# final_text = user_text.title()
+# print('Результат:', final_text)
+
+# Задача 5. Пароль
+
+# while True:
+#     password = helper.make_random_letters_sequence_up_low() + str(random.randint(0, 999))
+#     print('Придумайте пароль:', password)
+#     length = len(password)
+#     digits_cnt = len([i for i in password if i.isdigit()])
+#     upper_cnt = len([i for i in password if i.isupper()])
+#     if length < 8 or digits_cnt < 3 or upper_cnt < 1:
+#         print('Пароль ненадёжный. Попробуйте ещё раз.')
+#     else:
+#         print('Это надёжный пароль!')
+#         break
+
+# Задача 6.
+
+# text = 'aaAAbbсaaaA' #helper.make_random_letters_sequence_up_low()
+# print('Cтрока:', text)
+# text_divided = []
+# start = 0
+#
+# for i in range(1, len(text)):
+#     if text[i] != text[start]:
+#         text_divided.append(text[start:i])
+#         start = i
+# text_divided.append(text[start:])
+#
+# result = ''.join([i[0] + str(len(i)) for i in text_divided])
+#
+# print('Закодированная строка:', result)
+
+# Задача 7.
+
+# ip = random.choice(['128.16.35.a4', '240.127.56.340', '34.56.42,5', '128.0.0.255'])
+# print('Введённый IP-адрес:', ip)
+#
+# ip_list = ip.split('.')
+# accordance = True
+#
+# for i in ip_list:
+#     if not i.isdigit():
+#         accordance = False
+#         if i.isalnum():
+#             print(i, '- это не целое число.')
+#         else:
+#             print('Адрес — это четыре числа, разделённые точками.')
+#     elif i.isdigit() and not 0 <= int(i) <= 255:
+#         accordance = False
+#         print(i, 'не находится в диапазоне от 0 до 255.')
+#
+# if accordance:
+#     print('IP-адрес корректен.')
+
+# Задача 8. Бегущая строка
+
+# strings = ['abcd', 'cdab', 'cdba', 'bcda', 'dabc', 'bdac', 'cbda']
+# first_string = random.choice(strings)
+# strings.remove(first_string)
+# second_string = random.choice(strings)
+# print('Первая строка:', first_string,
+#       '\nВторая строка:', second_string)
+#
+# first_string_list = list(first_string)
+# second_string_list = list(second_string)
+#
+# equals = 0
+# shift = 1
+#
+# for _ in range(0, len(first_string_list) - 1):
+#     second_string_shift = [second_string_list[(i-shift) % len(second_string_list)] for i in range(len(second_string_list))]
+#     if second_string_shift == first_string_list:
+#         print('Первая строка получается из второй со сдвигом', shift)
+#         equals = 1
+#         break
+#     else:
+#         shift += 1
+#
+# if equals == 0:
+#     print('Первую строку нельзя получить из второй с помощью циклического сдвига.')
 
 
+# Задача 9
 
+word_list = [helper.make_random_letters_sequence_up_low() for _ in range(30)]
+word_list_punc = [helper.make_random_letters_sequence_up_low() + random.choice(string.punctuation) for _ in range(30)]
+punc_list = [helper.make_random_punc_sequence() for _ in range(30)]
+list_for_random = word_list + word_list_punc + punc_list
+shuffle(list_for_random)
+# user_text_list = [random.choice(list_for_random) for _ in range(random.randint(2, 10))]
+user_text_string = 'Хотя ,. возм:ожно и нет.'#' '.join(user_text_list)
+user_text_list = user_text_string.split(' ')
+
+
+print('Сообщение:', user_text_string)
+final_text_list = []
+
+
+def is_word_only_punc(word):
+    check = True
+    for i in word:
+        if i.isalpha():
+            check = False
+            break
+    return check
+
+
+def reverse_word_with_punc(word):
+    words = []
+    start = 0
+    i_count = 0
+    for i in word:
+        if i in string.punctuation:
+            words.append(word[i_count - 1:start:-1] + word[start] + i)
+            start = i_count
+        i_count += 1
+    words.append(word[i_count - 1:start:-1])
+    final_word = ''.join(words)
+    return final_word
+
+
+for word in user_text_list:
+    if word.isalpha():
+        word_final = word[::-1]
+    else:
+        if is_word_only_punc(word):
+            word_final = word
+        else:
+            word_final = reverse_word_with_punc(word)
+    final_text_list.append(word_final)
+
+final_text_string = ' '.join(final_text_list)
+
+print(final_text_string)
+
+# Задача 10. Истина
+#
+# text = 'vujgvmCfb tj ufscfu ouib z/vhm jdjuFyqm jt fscfuu uibo jdju/jnqm fTjnqm tj scfuuf ibou fy/dpnqm yDpnqmf jt ' \
+#        'cfuufs boui dbufe/dpnqmj uGmb tj fuufsc ouib oftufe/ bstfTq jt uufscf uibo otf/ef uzSfbebcjmj vout/dp djbmTqf ' \
+#        'dbtft (ubsfo djbmtqf hifopv up csfbl ifu t/svmf ipvhiBmu zqsbdujdbmju fbutc uz/qvsj Fsspst tipvme wfsof qbtt ' \
+#        'foumz/tjm omfttV mjdjumzfyq odfe/tjmf Jo fui dfgb pg hvjuz-bncj gvtfsf fui ubujpoufnq up ftt/hv Uifsf vmetip ' \
+#        'fc pof.. boe sbcmzqsfgf zpom pof pvt..pcwj xbz pu pe ju/ Bmuipvhi uibu bzx bzn puo cf wjpvtpc bu jstug ttvomf ' \
+#        'sfzpv( i/Evud xOp tj scfuuf ibou /ofwfs uipvhiBm fsofw jt fopgu cfuufs boui iu++sjh x/op gJ ifu ' \
+#        'nfoubujpojnqmf tj eibs pu mbjo-fyq tju( b bec /jefb Jg fui foubujpojnqmfn jt fbtz up bjo-fyqm ju znb cf b ' \
+#        'hppe jefb/ bnftqbdftO bsf pof ipoljoh sfbuh efbj .. fu(tm pe psfn gp tf"uip'
+#
+# word_list = text.split() # разбиваем текст на слова (разделитель - пробел)
+#
+# sentences = [] # разбиваем word_list на предложения ('/' - это зашифрованная точка. Слова, содержащие точку, завершают предложения)
+# start = 0
+# for i in range(len(word_list)):
+#     if word_list[i].find('/') != -1:
+#         sentences.append(word_list[start:i + 1])
+#         start = i + 1
+#
+# text_list = [[[chr(ord(i) - 1) for i in n] for n in sentence] for sentence in sentences] #расшифровываем буквы
+#
+# shift = 3 #сдвигаем буквы в словах на n знаков, начиная с 3 (в каждом предложении сдвиг увеличивается на 1)
+# correct_text = []
+# for sentence in text_list:
+#     correct_sentence = []
+#     for word in sentence:
+#         correct_word = [word[(i-shift) % len(word)] for i in range(len(word))]
+#         print(correct_word)
+#         correct_sentence.append(''.join(correct_word))
+#     correct_text.append(' '.join(correct_sentence))
+#     shift += 1
+#
+# for i in correct_text:
+#     print(i)

@@ -30,3 +30,12 @@ def make_random_letters_sequence_up_low():
         letter = random.choice(string.ascii_letters)
         word += letter
     return word
+
+
+def make_random_punc_sequence():
+    sequence = ''
+    punc_count = randint(1, 3)
+    for _ in range(punc_count):
+        punc = random.choice(string.punctuation)
+        sequence += punc
+    return sequence
