@@ -24,10 +24,7 @@ from my_modules import helper
 #
 # for num in range(0, 4):
 #     student_info_dict[info_template[num]] = student_info_lst[num]
-# student_info_dict['Оценки'] = []
-#
-# for i_grade in student_info_lst[4::]:
-#     student_info_dict['Оценки'].append(int(i_grade))
+# student_info_dict['Оценки'] = [int(grade) for grade in student_info_lst[4::]]
 #
 # for i_cat in student_info_dict:
 #     print(i_cat, '-', student_info_dict[i_cat])
@@ -57,3 +54,53 @@ from my_modules import helper
 #             print(i, phone_book[i])
 #         print('\n')
 #     name = random.choice(name_list)
+
+# 6.2 Методы словарей
+# Задача 1. Склады
+
+# small_storage = {
+#     'гвозди': 5000,
+#     'шурупы': 3040,
+#     'саморезы': 2000
+# }
+#
+# big_storage = {
+#     'доски': 1000,
+#     'балки': 150,
+#     'рейки': 600
+# }
+#
+# big_storage.update(small_storage)
+#
+# items_list = [key for key in big_storage]
+# items_list.extend(['гайки', 'брусья', 'шайбы', 'уголки', 'stop'])
+# item = random.choice(items_list)
+#
+# while item != 'stop':
+#     print('Наименование товара:', item, '\nКоличество:', big_storage.get(item))
+#     item = random.choice(items_list)
+
+# Задача 2. Кризис фруктов
+
+# incomes = {
+#     'apple': 5600.20,
+#     'orange': 3500.45,
+#     'banana': 5000.00,
+#     'bergamot': 3700.56,
+#     'durian': 5987.23,
+#     'grapefruit': 300.40,
+#     'peach': 10000.50,
+#     'pear': 1020.00,
+#     'persimmon': 310.00,
+# }
+# fruit_min_income = list(incomes.keys())[list(incomes.values()).index(min(list(incomes.values())))]
+#
+# print('Общий доход за год составил:', sum(incomes.values()),
+#       '\nСамый маленький доход у', fruit_min_income,
+#       '\nОн составляет:', incomes.pop(fruit_min_income), 'рублей'
+#       )
+#
+# print('Итоговый словарь:', incomes)
+
+# Задача 3. Гистограмма частоты
+
