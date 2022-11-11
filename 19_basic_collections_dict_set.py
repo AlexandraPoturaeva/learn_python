@@ -82,25 +82,61 @@ from my_modules import helper
 
 # Задача 2. Кризис фруктов
 
-# incomes = {
-#     'apple': 5600.20,
-#     'orange': 3500.45,
-#     'banana': 5000.00,
-#     'bergamot': 3700.56,
-#     'durian': 5987.23,
-#     'grapefruit': 300.40,
-#     'peach': 10000.50,
-#     'pear': 1020.00,
-#     'persimmon': 310.00,
-# }
+incomes = {
+    'apple': 5600.20,
+    'orange': 3500.45,
+    'banana': 5000.00,
+    'bergamot': 3700.56,
+    'durian': 5987.23,
+    'grapefruit': 300.40,
+    'peach': 10000.50,
+    'pear': 1020.00,
+    'persimmon': 310.00,
+}
+
+
+# Мой вариант
 # fruit_min_income = list(incomes.keys())[list(incomes.values()).index(min(list(incomes.values())))]
 #
 # print('Общий доход за год составил:', sum(incomes.values()),
 #       '\nСамый маленький доход у', fruit_min_income,
 #       '\nОн составляет:', incomes.pop(fruit_min_income), 'рублей'
 #       )
+
+# Вариант из решебника
+
+# def get_value(x):
+#     return x[1]
+#
+#
+# result_sum = sum(incomes.values())
+# min_name, min_value = min(incomes.items(), key=get_value)
+#
+# print('Общий доход за год составил:', result_sum,
+#       '\nСамый маленький доход у', min_name,
+#       '\nОн составляет:', min_value, 'рублей'
+#       )
+#
+# incomes.pop(min_name)
 #
 # print('Итоговый словарь:', incomes)
 
 # Задача 3. Гистограмма частоты
 
+# def histogram(text):
+#     sym_dict = dict()
+#     for sym in text:
+#         if sym in sym_dict:
+#             sym_dict[sym] += 1
+#         else:
+#             sym_dict[sym] = 1
+#     return sym_dict
+#
+#
+# text = ' '.join(helper.make_random_text_list('words', 20))
+# print('Текст:', text)
+# hist = histogram(text)
+#
+# for i_sym in sorted(hist.keys()):
+#     print(i_sym, ':', hist[i_sym])
+# print('Максимальная частота:', max(hist.values()))
