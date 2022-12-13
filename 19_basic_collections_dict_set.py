@@ -1,3 +1,4 @@
+import pickle
 import random
 import string
 from random import randint
@@ -287,3 +288,362 @@ def histogram(text):
 # # Способ 2
 # result = string_set & set("0123456789")
 # print(''.join(sorted(result)))
+
+# 6.6 Практическая работа
+# Задача 1. Песни 2
+
+# violator_songs = {
+#     'World in My Eyes': 4.86,
+#     'Sweetest Perfection': 4.43,
+#     'Personal Jesus': 4.56,
+#     'Halo': 4.9,
+#     'Waiting for the Night': 6.07,
+#     'Enjoy the Silence': 4.20,
+#     'Policy of Truth': 4.76,
+#     'Blue Dress': 4.29,
+#     'Clean': 5.83
+# }
+#
+# songs_list = list(violator_songs.keys())
+# duration = 0
+#
+# while True:
+#     songs_list_copy = songs_list.copy()
+#     song_num = randint(0, len(songs_list))
+#     print('Сколько песен выбрать? (0 - выход)', song_num)
+#     if song_num == 0:
+#         break
+#     else:
+#         for i in range(song_num):
+#             song = random.choice(songs_list_copy)
+#             songs_list_copy.remove(song)
+#             print(f'Название {i + 1}-й песни: {song}')
+#             duration += violator_songs[song]
+#         print('Общее время звучания песен: {:.2f}'.format(duration), 'минуты.')
+#         duration = 0
+
+# Задача 2. География
+
+# with open('./data/text_lists/countries', 'rb') as f:
+#     countries_id = pickle.load(f)
+#
+# with open('./data/text_lists/cities', 'rb') as f:
+#     cities_country_id = pickle.load(f)
+#
+# country_num = randint(0, 5)
+#
+# while country_num != 0:
+#     user_dict = {}
+#     print('Количество стран:', country_num)
+#     user_cities_list = []
+#     for i in range(country_num):   #гененируем пользовательский текст (страны и города, которые в этой стране находятся)
+#         text = ''
+#         country = random.choice(list(countries_id.keys()))
+#         cities = [key for key in cities_country_id if cities_country_id[key] == countries_id[country]]
+#         text += country
+#         if len(cities) >= 3:
+#             cities_num = 3
+#         else:
+#             cities_num = len(cities)
+#         for _ in range(cities_num):
+#             city = random.choice(cities)
+#             text += ' ' + city
+#             cities.remove(city)
+#         print(f'{i+1}-я страна: {text}')
+#         text_list = text.split(' ')
+#         user_cities_list.extend(text_list[1::])
+#         user_dict[text_list[0]] = text_list[1::]
+#     for i in range(3):
+#         city = random.choice(user_cities_list)
+#         for key, value in user_dict.items():
+#             if city in value:
+#                 city_country = key
+#         print(f'{i+1}-й город: {city}'
+#               f'\nГород {city} расположен в стране {city_country}')
+#     country_num = randint(0, 5)
+
+# Задача 3. Криптовалюта
+
+# data = {
+#     "address": "0x544444444444",
+#     "ETH": {
+#         "balance": 444,
+#         "totalIn": 444,
+#         "totalOut": 4
+#     },
+#     "count_txs": 2,
+#     "tokens": [
+#         {
+#             "fst_token_info": {
+#                 "address": "0x44444",
+#                 "name": "fdf",
+#                 "decimals": 0,
+#                 "symbol": "dsfdsf",
+#                 "total_supply": "3228562189",
+#                 "owner": "0x44444",
+#                 "last_updated": 1519022607901,
+#                 "issuances_count": 0,
+#                 "holders_count": 137528,
+#                 "price": False
+#             },
+#             "balance": 5000,
+#             "totalIn": 0,
+#             "total_out": 0
+#         },
+#         {
+#             "sec_token_info": {
+#                 "address": "0x44444",
+#                 "name": "ggg",
+#                 "decimals": "2",
+#                 "symbol": "fff",
+#                 "total_supply": "250000000000",
+#                 "owner": "0x44444",
+#                 "last_updated": 1520452201,
+#                 "issuances_count": 0,
+#                 "holders_count": 20707,
+#                 "price": False
+#             },
+#             "balance": 500,
+#             "totalIn": 0,
+#             "total_out": 0
+#         }
+#     ]
+# }
+#
+# print(data.keys())
+# print(data.values())
+#
+# data['ETH']['total_diff'] = 100
+#
+# data['tokens'][0]['fst_token_info'].update({'name': 'doge'})
+#
+# data['ETH'].update({'totalOut': data['tokens'][0].pop('total_out')})
+#
+# data['tokens'][1]['sec_token_info']['total_price'] = data['tokens'][1]['sec_token_info'].pop('price')
+
+# Задача 4. Товары
+
+# goods = {
+#     'Лампа': '12345',
+#     'Стол': '23456',
+#     'Диван': '34567',
+#     'Стул': '45678',
+# }
+#
+#
+# store = {
+#     '12345': [
+#         {'quantity': 27, 'price': 42},
+#     ],
+#     '23456': [
+#         {'quantity': 22, 'price': 510},
+#         {'quantity': 32, 'price': 520},
+#     ],
+#     '34567': [
+#         {'quantity': 2, 'price': 1200},
+#         {'quantity': 1, 'price': 1150},
+#     ],
+#     '45678': [
+#         {'quantity': 50, 'price': 100},
+#         {'quantity': 12, 'price': 95},
+#         {'quantity': 43, 'price': 97},
+#     ],
+# }
+#
+# for good in list(goods.keys()):
+#     count = sum([store[goods[good]][n]['quantity']
+#                  for n in range(len(store[goods[good]]))])
+#     total_price = sum([store[goods[good]][n]['quantity'] * store[goods[good]][n]['price']
+#                        for n in range(len(store[goods[good]]))])
+#     print(f'{good} - {count} штук, стоимость {total_price} руб.')
+
+# Задача 5. Гистограмма частоты 2
+
+# text = ' '.join(helper.make_random_text_list('words', 20))
+# print('Текст:', text)
+# hist = histogram(text)
+#
+# print('Оригинальный словарь частот:')
+# for i_sym in sorted(hist.keys()):
+#     print(i_sym, ':', hist[i_sym])
+#
+#
+# freq_set = set(hist.values())
+# hist_invert = {freq: [key for key in hist.keys() if hist[key] == freq] for freq in freq_set}
+#
+# print('\nИнвертированный словарь частот:')
+# for freq in sorted(hist_invert.keys()):
+#     print(freq, ':', hist_invert[freq])
+
+# Задача 6. Словарь синонимов
+
+# with open('./data/text_lists/synonims', 'rb') as f:
+#     synonyms_pairs_list = pickle.load(f)
+#
+# print(synonyms_pairs_list)
+#
+# word_list = [pair[:pair.index(' ')].lower() for pair in synonyms_pairs_list]
+# print(word_list)
+#
+# answer = 1
+# user_syn_dict = dict()
+#
+# while answer == 1:
+#     n = randint(10, 30)
+#     print('Количество пар слов:', n)
+#     for i in range(1, n + 1):
+#         pair = random.choice(synonyms_pairs_list).lower()
+#         print(f'{i}-я пара: {pair}')
+#         pair_list = pair.split(' — ')
+#         user_syn_dict[pair_list[0]] = pair_list[1]
+#     while True:
+#         user_word = random.choice(word_list)
+#         print('Слово:', user_word)
+#         if user_word in user_syn_dict.keys():
+#             print('Синоним:', user_syn_dict[user_word])
+#             break
+#         else:
+#             print('Такого слова нет в словаре.')
+#     answer = randint(1, 2)
+
+# Задача 7. Пицца
+
+# with open('./data/text_lists/names', 'rb') as f:
+#     names = pickle.load(f)
+#
+# with open('./data/text_lists/russian_dishes', 'rb') as f:
+#     dishes = pickle.load(f)
+#
+# client_names = [random.choice(names) for _ in range(10)] # генерируем списки имён клиентов и ассортимент блюд кафе
+# cafe_dishes = [random.choice(dishes) for _ in range(5)]
+#
+# order_num = randint(5, 15) # генерируем число заказов
+# order_text = ''
+# order_client_dict = dict()
+#
+# print('Количество заказов:', order_num)
+#
+# for i in range(1, order_num + 1):
+#     name = random.choice(client_names) # генерируем текстовую строку заказа (order_text)
+#     dish = random.choice(cafe_dishes)
+#     dish_num = str(randint(1, 5))
+#     order_text = name + ' ' + dish + ' ' + dish_num
+#     print(f'{i}-й заказ: {order_text}')
+#
+#     i_name = order_text[:order_text.index(' '):] # вычленяем из текстовой строки заказа ключи и значения для словаря
+#     i_dish = order_text[order_text.index(' ')+1:-2]
+#     i_dish_num = int(order_text[-1])
+#
+#     if i_name in order_client_dict.keys(): # составляем словарь заказов
+#         if i_dish in order_client_dict[i_name].keys():
+#             order_client_dict[i_name][i_dish] += i_dish_num
+#         else:
+#             order_client_dict[i_name].update({i_dish: i_dish_num})
+#     else:
+#         order_client_dict[i_name] = dict()
+#         order_client_dict[i_name][i_dish] = i_dish_num #order_dict.copy()
+#
+# for key, value in order_client_dict.items():
+#     print('\n' + key + ':')
+#     for dish in value.keys():
+#         print(f'   {dish}: {value[dish]}')
+
+# Задача 8. Угадай число
+
+# max_num = randint(5, 30)
+# hidden_num = randint(1, max_num)
+#
+# possible_nums_set = {num for num in range(1, max_num + 1)}
+# yes_nums_set = possible_nums_set
+#
+# print('Максимальное число:', max_num,
+#       '\nЗагаданное число:', hidden_num)
+#
+# commands = ['Попробуем ещё раз', 'Попробуем ещё раз', 'Попробуем ещё раз', 'Помогите!']
+# command = 'Попробуем ещё раз!'
+#
+# while True:
+#     match command:
+#         case 'Попробуем ещё раз':
+#             stop_num = randint(1, len(possible_nums_set))
+#             start_num = stop_num - randint(1, stop_num)
+#             step = randint(1, 3)
+#             guess_set = {num for num in list(possible_nums_set)[start_num:stop_num:step]}
+#             print('Нужное число есть среди этих чисел?', *sorted(guess_set))
+#             if hidden_num in guess_set:
+#                 print('Да')
+#                 yes_nums_set.intersection_update(guess_set)
+#                 if len(guess_set) == 1:
+#                     print('Число отгадано!')
+#                     break
+#             else:
+#                 print('Нет')
+#                 possible_nums_set.difference_update(guess_set)
+#         case 'Помогите!':
+#             print(command)
+#             print('Артём мог загадать следующие числа:', *possible_nums_set.intersection(yes_nums_set))
+#             break
+#     command = random.choice(commands)
+
+# Задача 9. Родословная
+
+# pairs = ['Alexei Peter_I', 'Anna Peter_I', 'Elizabeth Peter_I', 'Peter_II Alexei', 'Peter_III Anna',
+#          'Paul_I Peter_III', 'Alexander_I Paul_I', 'Nicholaus_I Paul_I']
+#
+# pers_high_dict = dict()
+# gen_tree = dict()
+# # gen_tree = dict()
+#
+# for i in range(1, len(pairs) + 1):
+#     print(f'{i}-я пара: {pairs[i - 1]}')
+#     pair_list = pairs[i - 1].split()
+#     if pair_list[1] not in gen_tree.keys():
+#         gen_tree[pair_list[1]] = set()
+#     gen_tree[pair_list[1]].add(pair_list[0])
+#
+# print(gen_tree)
+#
+# children = set().union(*gen_tree.values())
+#
+# for key in gen_tree.keys():
+#     if key not in children:
+#         parent = key
+#         pers_high_dict[key] = 0
+#
+# heigh = 1
+#
+#
+# def get_heigh(parent, heigh):
+#     if parent in gen_tree.keys():
+#         for child in gen_tree[parent]:
+#             pers_high_dict.update({child: heigh})
+#             get_heigh(child, heigh + 1)
+#
+#
+# get_heigh(parent, heigh)
+#
+# for key, value in sorted(pers_high_dict.items()):
+#     print(key, value)
+
+# Задача 10. Снова палиндром
+
+word = 'aacddd'  # helper.make_random_letters_sequence()
+print('Слово:', word)
+
+
+def is_palindrome(word):
+    hist_dict = dict()
+    for i_sym in word:
+        hist_dict[i_sym] = hist_dict.get(i_sym, 0) + 1
+    odd = 0
+    for value in hist_dict.values():
+        if value % 2 != 0:
+            odd += 1
+            if odd > 1:
+                return 'Нельзя сделать палиндромом'
+    if odd <= 1:
+        return 'Можно сделать палиндромом'
+
+
+print(is_palindrome(word))
+
